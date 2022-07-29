@@ -369,6 +369,13 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@ethers-ancillary/bsc@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@ethers-ancillary/bsc/-/bsc-0.0.3.tgz#91ad0b80fe9cbf2c3634b1c0df7f0df60c084c2c"
+  integrity sha512-dBxaXap10Lpu9R6JOpLQO1GgueA7Lyq6tU2vrWfpV9FhUSSAbLAHAnUFXld+jBhqkl7TBfgtfsavvy2wp5jj0A==
+  dependencies:
+    ethers "^5.4.1"
+
 "@ethersproject/abi@5.6.4", "@ethersproject/abi@^5.6.3":
   version "5.6.4"
   resolved "https://registry.yarnpkg.com/@ethersproject/abi/-/abi-5.6.4.tgz#f6e01b6ed391a505932698ecc0d9e7a99ee60362"
@@ -3017,7 +3024,7 @@ ethereumjs-util@^6.0.0:
     ethjs-util "0.1.6"
     rlp "^2.2.3"
 
-ethers@^5.6.9:
+ethers@^5.4.1, ethers@^5.6.9:
   version "5.6.9"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.6.9.tgz#4e12f8dfcb67b88ae7a78a9519b384c23c576a4d"
   integrity sha512-lMGC2zv9HC5EC+8r429WaWu3uWJUCgUCt8xxKCFqkrFuBDZXDYIdzDUECxzjf2BMF8IVBByY1EBoGSL3RTm8RA==

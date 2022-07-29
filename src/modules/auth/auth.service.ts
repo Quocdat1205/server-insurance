@@ -63,6 +63,6 @@ export class AuthService {
   }
 
   private getMessage(nonce: number) {
-    return `Sign message with none: ${nonce}`;
+    return `Sign message with nonce: ${nonce}`;
   }
 }

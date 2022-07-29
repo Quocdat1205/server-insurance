@@ -8,6 +8,7 @@ import env from '@utils/constant/env';
 import { InsuranceModule } from '@modules/insurance/insurance.module';
 import { UserModule } from '@modules/user/user.module';
 import { AuthModule } from '@modules/auth/auth.module';
+import { ScInsuranceModule } from '@modules/scInsurance/scInsurance.module';
 
 export const RootModule = [
   ConfigModule.forRoot({
@@ -27,4 +28,5 @@ export const RootModule = [
   UserModule,
   AuthModule,
   InsuranceModule,
+  ScInsuranceModule,
 ];
