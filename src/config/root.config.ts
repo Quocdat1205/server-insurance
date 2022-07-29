@@ -24,7 +24,7 @@ export const RootModule = [
   }),
   ScheduleModule.forRoot(),
   MongooseModule.forRoot(env.MONGO_URL),
-  InsuranceModule,
   UserModule,
   AuthModule,
+  InsuranceModule,
 ];

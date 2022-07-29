@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { ApiResponse, ApiBody } from '@nestjs/swagger';
 import { LoggerService } from '@modules/logger/logger.service';
 import {
@@ -7,6 +15,8 @@ import {
 } from '@utils/router/insurance.router';
 import { JwtDto, AuthDto, ResponseGetNonce } from './user.dto';
 import { AuthService } from '@modules/auth/auth.service';
+import { JwtAuthGuard } from '@modules/auth/jwt-auth.guard';
+import { Request as RequestExpress } from 'express';
 
 @Controller()
 export class UserController {
@@ -24,5 +34,11 @@ export class UserController {
   public async logIn(@Body() body: AuthDto) {
     LoggerService.log(`Login metamask`);
     return this.autherService.loginWithCredentials(body);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('user-info')
+  public async getUserInfo(@Request() req: RequestExpress) {
+    return req.user;
   }
 }

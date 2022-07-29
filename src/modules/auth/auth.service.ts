@@ -4,6 +4,7 @@ import { UserService } from '@modules/user/user.service';
 import { User } from '@schema';
 import { JwtDto, AuthDto } from '@modules/user/user.dto';
 import { recoverPersonalSignature } from 'eth-sig-util';
+import env from '@utils/constant/env';
 import {
   ForbiddenException,
   UnAuthorizedException,
@@ -28,6 +29,7 @@ export class AuthService {
 
   public async loginWithCredentials(props: AuthDto) {
     const { walletAddress, signature } = props;
+
     const user = await this.usersService.findOneUser({ walletAddress });
     let recoveredAddr: string;
 
@@ -41,22 +43,23 @@ export class AuthService {
         sig: signature,
       });
     } catch (err) {
-      throw new ForbiddenException('Problem with signature verification.');
+      return new ForbiddenException('Problem with signature verification.');
     }
 
     if (recoveredAddr.toLowerCase() !== walletAddress.toLowerCase()) {
-      throw new UnAuthorizedException('Signature is not correct.');
+      return new UnAuthorizedException('Signature is not correct.');
     }
 
-    const payload = { walletAddress };
+    const payload = { walletAddress, signature };
 
-    return {
-      access_token: this.generateToken(payload),
-    };
+    return this.generateToken(payload);
   }
 
   private async generateToken(payload: any) {
-    return this.jwtTokenService.sign(payload);
+    return this.jwtTokenService.sign(
+      { payload },
+      { secret: env.JWT_SECRET_KEY },
+    );
   }
 
   private async decodeToken(token: string) {
@@ -66,6 +69,6 @@ export class AuthService {
   }
 
   private getMessage(nonce: number) {
-    return `Sign message none: ${nonce}`;
+    return `Sign message with none: ${nonce}`;
   }
 }
