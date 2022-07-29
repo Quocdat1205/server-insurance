@@ -8,11 +8,15 @@ import {
 } from './insurance.dto';
 import { RealIP } from 'nestjs-real-ip';
 import { LoggerService } from '@modules/logger/logger.service';
+import { GetInsuranceByIdDto } from './insurance.dto';
 import {
   ROUTER_GET_INSURANCE,
   ROUTER_GET_INSURSNCE_REFUND,
   ROUTER_BUY_INSURANCE,
+  ROUTER_GET_COVER_PAYOUT,
+  ROUTER_GET_INSURANCE_BY_ID,
 } from '@utils/router/insurance.router';
+import { CalCoverPayoutDto } from 'src/type/handler.type';
 
 @Controller()
 export class InsuranceController {
@@ -39,5 +43,17 @@ export class InsuranceController {
   ) {
     LoggerService.log(`Logger: get insurance controller. Ip request: ${ip}`);
     return this.insuranceService.getInsuranceRefundByAddress(query);
+  }
+
+  @Get(ROUTER_GET_INSURANCE_BY_ID)
+  getInsuranceById(@Query() query: GetInsuranceByIdDto) {
+    LoggerService.log(`Logger: get insurance by id`);
+    return this.insuranceService.getInsuranceById(query);
+  }
+
+  @Get(ROUTER_GET_COVER_PAYOUT)
+  getCoverPayout(@Query() query: CalCoverPayoutDto) {
+    LoggerService.log(`Logger: get cover payout`);
+    return this.insuranceService.getCoverPayout(query);
   }
 }

@@ -12,7 +12,7 @@ import { LoggerService } from '@modules/logger/logger.service';
 import {
   ROUTER_GET_NONCE,
   ROUTER_LOGIN_METAMASK,
-} from '@utils/router/insurance.router';
+} from '@utils/router/auth.router';
 import { JwtDto, AuthDto, ResponseGetNonce } from './user.dto';
 import { AuthService } from '@modules/auth/auth.service';
 import { JwtAuthGuard } from '@modules/auth/jwt-auth.guard';

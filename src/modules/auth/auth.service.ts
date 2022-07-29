@@ -62,12 +62,6 @@ export class AuthService {
     );
   }
 
-  private async decodeToken(token: string) {
-    const decode = this.jwtTokenService.decode(token);
-
-    return decode;
-  }
-
   private getMessage(nonce: number) {
     return `Sign message with none: ${nonce}`;
   }

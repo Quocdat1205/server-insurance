@@ -5,6 +5,8 @@ import {
   IsNumber,
   IsString,
 } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { Transformation } from 'src/pipe/transform.pipe';
 
 export class CreateInsuranceDto {
   @ApiProperty({
@@ -89,6 +91,7 @@ export class GetInsuranceDto {
 
 export class GetInsuranceByIdDto {
   @ApiProperty({ type: String })
+  @Transform(({ value }) => Transformation.checkStringIsNumber(value))
   @IsString()
   _id: string;
 }

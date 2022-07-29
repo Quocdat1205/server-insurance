@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import Binance from 'node-binance-api';
-import env from '@utils/constant/env';
 import { Insurance, InsuranceType } from '@schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -11,22 +9,14 @@ import { OrderFuturesDto } from '@modules/binance/binance.dto';
 import { BinanceService } from '@modules/binance/binance.service';
 import { GetInsuranceDto } from './insurance.dto';
 import { EXPIRED, AVAILABLE } from '@utils/constant/stateInsurance';
-
+import { CalCoverPayoutDto } from 'src/type/handler.type';
 @Injectable()
 export class InsuranceService {
-  private binance: Binance;
-
   constructor(
     @InjectModel(Insurance.name)
     private readonly modelInsurance: Model<InsuranceType>,
     private readonly binanceService: BinanceService,
-  ) {
-    this.binance = new Binance().options({
-      APIKEY: env.BINANCE_API_KEY,
-      APISECRET: env.BINANCE_SECRET_KEY,
-      test: true,
-    });
-  }
+  ) {}
 
   public async createNewInsurance(props: CreateInsuranceDto) {
     const { p_start, p_claim, hedge } = props;
@@ -139,6 +129,12 @@ export class InsuranceService {
   public async getInsuranceById(id: GetInsuranceByIdDto): Promise<Insurance> {
     const { _id } = id;
 
-    return this.modelInsurance.findOne({ _id });
+    const insurance = await this.modelInsurance.findOne({ _id }).exec();
+
+    return insurance;
+  }
+
+  public async getCoverPayout(props: CalCoverPayoutDto) {
+    return coverPayout(props);
   }
 }
