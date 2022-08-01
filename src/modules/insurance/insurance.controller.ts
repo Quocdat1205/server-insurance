@@ -60,7 +60,7 @@ export class InsuranceController {
     return this.insuranceService.getInsuranceById(query);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @ApiResponse({ type: Number })
   @Get(ROUTER_GET_COVER_PAYOUT)
   getCoverPayout(@Query() query: CalCoverPayoutDto) {
