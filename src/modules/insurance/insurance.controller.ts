@@ -23,7 +23,7 @@ import { JwtAuthGuard } from '@modules/auth/jwt-auth.guard';
 export class InsuranceController {
   constructor(private readonly insuranceService: InsuranceService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post(ROUTER_BUY_INSURANCE)
   @ApiResponse({ type: ResponseGetInsurance })
   buyInsurance(@Body() body: CreateInsuranceDto) {

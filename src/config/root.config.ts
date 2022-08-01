@@ -9,6 +9,7 @@ import { InsuranceModule } from '@modules/insurance/insurance.module';
 import { UserModule } from '@modules/user/user.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { ScInsuranceModule } from '@modules/scInsurance/scInsurance.module';
+import { BinanceModule } from '@modules/binance/binance.module';
 
 export const RootModule = [
   ConfigModule.forRoot({
@@ -29,4 +30,5 @@ export const RootModule = [
   AuthModule,
   InsuranceModule,
   ScInsuranceModule,
+  BinanceModule,
 ];

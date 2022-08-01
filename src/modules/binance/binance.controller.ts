@@ -5,7 +5,7 @@ import { BinanceService } from './binance.service';
 export class BinanceController {
   constructor(private readonly binanceService: BinanceService) {}
 
-  @Get('get-price-futures')
+  @Get('get-futures-price')
   async getPriceFutures() {
     return this.binanceService.getPriceFutures();
   }
