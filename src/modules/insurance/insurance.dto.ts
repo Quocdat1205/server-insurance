@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { Transformation } from 'src/pipe/transform.pipe';
+import { IsBoolean } from 'class-validator';
 
 export class CreateInsuranceDto {
   @ApiProperty({
@@ -75,16 +76,20 @@ export class GetInsuranceDto {
   owner: string;
 
   @ApiProperty({ type: Number })
+  @Transform(({ value }) => Transformation.parseStringToNumber(value))
   @IsNotEmpty()
+  @IsNumber()
   min: number;
 
   @ApiProperty({ type: Number })
-  @IsNumber()
+  @Transform(({ value }) => Transformation.parseStringToNumber(value))
   @IsNotEmpty()
+  @IsNumber()
   max: number;
 
   @ApiProperty({ type: Boolean })
-  @IsNumber()
+  @Transform(({ value }) => Transformation.parseStringToBoolean(value))
+  @IsBoolean()
   @IsNotEmpty()
   isAll: boolean;
 }
