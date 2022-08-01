@@ -4,10 +4,10 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  IsBoolean,
 } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { Transformation } from 'src/pipe/transform.pipe';
-import { IsBoolean } from 'class-validator';
 
 export class CreateInsuranceDto {
   @ApiProperty({
