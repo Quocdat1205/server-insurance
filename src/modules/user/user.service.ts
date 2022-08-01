@@ -31,13 +31,18 @@ export class UserService {
     return newUser;
   }
 
-  public async updateNonce(props: JwtDto): Promise<User> {
+  public async updateNonce(props: JwtDto): Promise<number> {
     const { walletAddress } = props;
+    const nonce = randomNonce();
 
-    const user = await this.modelUser
-      .findOneAndUpdate({ walletAddress, nonce: randomNonce() })
+    const updateUser = await this.modelUser
+      .findOneAndUpdate({ walletAddress, nonce })
       .exec();
 
-    return user;
+    if (!updateUser) {
+      return null;
+    }
+
+    return nonce;
   }
 }

@@ -17,14 +17,16 @@ export class AuthService {
     private jwtTokenService: JwtService,
   ) {}
 
-  public async getNonce(props: JwtDto): Promise<User> {
-    const user = await this.usersService.updateNonce(props);
+  public async getNonce(props: JwtDto): Promise<User | number> {
+    const nonce = await this.usersService.updateNonce(props);
 
-    if (user) {
-      return user;
+    if (nonce) {
+      return nonce;
     }
 
-    return await this.usersService.createNewUser(props);
+    const user = await this.usersService.createNewUser(props);
+
+    return user.nonce;
   }
 
   public async loginWithCredentials(props: AuthDto) {
