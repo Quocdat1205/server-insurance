@@ -64,6 +64,8 @@ export class InsuranceController {
   @ApiResponse({ type: Number })
   @Get(ROUTER_GET_COVER_PAYOUT)
   getCoverPayout(@Query() query: CalCoverPayoutDto) {
+    console.log(query);
+
     LoggerService.log(`Logger: get cover payout`);
     return this.insuranceService.getCoverPayout(query);
   }

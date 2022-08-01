@@ -11,6 +11,16 @@ export class Transformation {
     return parseInt(value);
   }
 
+  public static parseStringToFloat(value: string): number | undefined {
+    const explodedValues = typeof value === 'string';
+
+    if (!explodedValues || !value) return undefined;
+
+    if (parseInt(value) < 0) return undefined;
+
+    return parseFloat(value);
+  }
+
   public static parseStringToBoolean(value: string): boolean {
     const check = Boolean(value);
 
