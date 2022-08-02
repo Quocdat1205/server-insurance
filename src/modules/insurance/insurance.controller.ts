@@ -15,9 +15,11 @@ import {
   ROUTER_BUY_INSURANCE,
   ROUTER_GET_COVER_PAYOUT,
   ROUTER_GET_INSURANCE_BY_ID,
+  ROUTER_CHECK_EXPIRED_TOKEN,
 } from '@utils/router/insurance.router';
 import { CalCoverPayoutDto } from 'src/type/handler.type';
 import { JwtAuthGuard } from '@modules/auth/jwt-auth.guard';
+import { BooleanExpression } from 'mongoose';
 
 @Controller()
 export class InsuranceController {
@@ -60,13 +62,18 @@ export class InsuranceController {
     return this.insuranceService.getInsuranceById(query);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @ApiResponse({ type: Number })
   @Get(ROUTER_GET_COVER_PAYOUT)
   getCoverPayout(@Query() query: CalCoverPayoutDto) {
-    console.log(query);
-
     LoggerService.log(`Logger: get cover payout`);
     return this.insuranceService.getCoverPayout(query);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiResponse({ type: Boolean })
+  @Get(ROUTER_CHECK_EXPIRED_TOKEN)
+  checkExpiredTokem(): BooleanExpression {
+    return true;
   }
 }
