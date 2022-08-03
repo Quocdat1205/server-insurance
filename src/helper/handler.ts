@@ -11,7 +11,7 @@ export const etherToWei = (amount: number | string): BigNumber =>
 export const weiToEther = (wei: string | BigNumber): number =>
   parseFloat(ethers.utils.formatEther(wei));
 
-export const diifStopfutures = 0; // 0%
+export const diffStopfutures = 0; // 0%
 
 export const diffClaim = 0.05; // 5%
 
@@ -52,12 +52,12 @@ export const P_stop = (props: CalPStopDto): number => {
 
   if (p_claim > p_start) {
     const p_stop =
-      p_start - p_start * (hedge + ratio_min_profit - diifStopfutures);
+      p_start - p_start * (hedge + ratio_min_profit - diffStopfutures);
 
     return Math.abs(p_stop);
   } else {
     const p_stop =
-      p_start + p_start * (hedge + ratio_min_profit - diifStopfutures);
+      p_start + p_start * (hedge + ratio_min_profit - diffStopfutures);
 
     return Math.abs(p_stop);
   }
@@ -69,4 +69,12 @@ export const formatPriceToWeiValue = (_num: number): bigint => {
 
 export const randomNonce = (): number => {
   return Math.floor(Math.random() * 899999 + 100000);
+};
+
+export const convertDateToTimeStamp = (_date: number, _time_plus = 0) => {
+  const parseDate = new Date(_date * 1000);
+
+  parseDate.setMinutes(parseDate.getMinutes() + _time_plus);
+
+  return new Date(parseDate).getTime() / 1000;
 };

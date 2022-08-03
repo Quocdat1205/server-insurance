@@ -1,9 +1,5 @@
 export const NAIN_TOKEN_ABI = [
-  {
-    inputs: [{ internalType: 'address', name: '_minter', type: 'address' }],
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-  },
+  { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
   {
     anonymous: false,
     inputs: [
@@ -166,24 +162,10 @@ export const NAIN_TOKEN_ABI = [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'isOwner',
-    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [{ internalType: 'uint256', name: 'amount', type: 'uint256' }],
     name: 'mint',
     outputs: [],
     stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'minter',
-    outputs: [{ internalType: 'address', name: '', type: 'address' }],
-    stateMutability: 'view',
     type: 'function',
   },
   {

@@ -1,26 +1,30 @@
 import { Module } from '@nestjs/common';
-import { ScInsuranceService } from './scInsurance.service';
-import { ScInsuranceController } from './scInsurance.controller';
-import { EthersCoreModule } from '@modules/contract/etherium/ethers-core.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import {
-  Insurance,
   InsuranceSchema,
+  Insurance,
   TimeGetInsurance,
   TimeGetInsuranceSchema,
 } from '@schema';
+import { LoggerService } from '@modules/logger/logger.service';
+import { ScInsuranceService } from '@modules/scInsurance/scInsurance.service';
+import { BinanceService } from '@modules/binance/binance.service';
 import { BscService } from '@modules/contract/bsc/bsc.service';
+import { TaskService } from './schedule.service';
 
 @Module({
   imports: [
-    EthersCoreModule.forRoot({}),
     MongooseModule.forFeature([
       { name: Insurance.name, schema: InsuranceSchema },
       { name: TimeGetInsurance.name, schema: TimeGetInsuranceSchema },
     ]),
   ],
-  exports: [],
-  providers: [ScInsuranceService, BscService],
-  controllers: [ScInsuranceController],
+  providers: [
+    LoggerService,
+    ScInsuranceService,
+    BinanceService,
+    BscService,
+    TaskService,
+  ],
 })
-export class ScInsuranceModule {}
+export class TaskModule {}

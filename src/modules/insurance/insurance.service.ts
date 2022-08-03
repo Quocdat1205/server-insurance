@@ -10,6 +10,7 @@ import { BinanceService } from '@modules/binance/binance.service';
 import { GetInsuranceDto } from './insurance.dto';
 import { EXPIRED, AVAILABLE } from '@utils/constant/stateInsurance';
 import { CalCoverPayoutDto } from 'src/type/handler.type';
+
 @Injectable()
 export class InsuranceService {
   constructor(

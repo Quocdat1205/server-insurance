@@ -16,7 +16,7 @@ export class ScInsuranceController {
   @Get('update-insurance')
   public async updateInsurance() {
     return this.scInsuranceService.updateStateSmartContract({
-      idInsurance: 50,
+      idInsurance: 1,
       state: StateInsuranceRole.EXPIRED,
     });
   }
@@ -24,5 +24,13 @@ export class ScInsuranceController {
   @Get('reset-db')
   public async resetDb() {
     return await this.modelInsurance.deleteMany({});
+  }
+
+  @Get('test-transfer')
+  public testTransfer() {
+    return this.scInsuranceService.refundNAIN(
+      '0xc5F6EcaDb23545500300Ed265602736B8C0908e5',
+      0.1,
+    );
   }
 }

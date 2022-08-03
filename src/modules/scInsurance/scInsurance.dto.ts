@@ -1,9 +1,10 @@
 import { IsNumber, IsOptional, Matches } from 'class-validator';
 
 export enum StateInsuranceRole {
-  AVAILABLE = 'AVAILABLE',
-  PAYOUT_WAITING = 'PAYOUT_WAITING',
-  EXPIRED = 'EXPIRED',
+  AVAILABLE = 'Available',
+  PAYOUT_WAITING = 'PayoutWaiting',
+  EXPIRED = 'Expired',
+  PAID = 'Paid',
 }
 
 export class UpdateInsuranceDto {

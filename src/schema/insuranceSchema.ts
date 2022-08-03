@@ -9,7 +9,7 @@ export class Insurance {
   owner: string;
 
   @Prop({ required: true })
-  hash: string;
+  transaction_hash: string;
 
   @Prop({ required: true })
   id_sc: number;
@@ -17,7 +17,7 @@ export class Insurance {
   @Prop()
   asset: string;
 
-  @Prop({ default: 'NAIN' })
+  @Prop({ default: 'NAIN', required: false })
   asset_refund: string;
 
   @Prop({ required: true })
@@ -35,7 +35,7 @@ export class Insurance {
   @Prop({ required: true })
   expired: number; // type timestamp
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   hedge: number;
 
   @Prop({ required: true })
@@ -44,7 +44,7 @@ export class Insurance {
   @Prop({ required: true })
   state: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   cover_payout: number;
 
   @Prop({ default: false })
